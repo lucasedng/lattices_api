@@ -12,15 +12,17 @@ lattice_list_schema = LatticeSchema(many=True)
 
 ITEM_NOT_FOUND = 'Lattice not found'
 
-item = lattices_namespace.model('Lattice Model', {
-    'name': fields.String('Example: "A2" '),
-    'dimension': fields.Integer('Example: "2"'),
-    'determinant': fields.Float('Example: "3.0"'),
-    'minimal_norm': fields.Float('Example: "2.0"'),
-    'kissing_number': fields.Integer('Example: "6"'),
-    'gen_matrix': fields.String('Lattice generator matrix'),
-    'gram_matrix': fields.String('Lattice gram matrix')
-})
+item = lattices_namespace.model(
+    'Lattice Model', {
+        'name': fields.String('Example: "A2" '),
+        'dimension': fields.Integer('Example: "2"'),
+        'determinant': fields.Float('Example: "3.0"'),
+        'minimal_norm': fields.Float('Example: "2.0"'),
+        'kissing_number': fields.Integer('Example: "6"'),
+        'gen_matrix': fields.String('Lattice generator matrix'),
+        'gram_matrix': fields.String('Lattice gram matrix')
+    }
+)
 
 
 class Lattice(Resource):
@@ -57,6 +59,7 @@ class Lattice(Resource):
         lattice_data.save_to_db()
         return lattice_schema.dump(lattice_data), 200
 
+
 class LatticeList(Resource):
 
     @lattices_namespace.doc('Get all the Lattices')
@@ -67,7 +70,7 @@ class LatticeList(Resource):
     @lattices_namespace.doc('Create an Lattice')
     def post(self, ):
         lattice_json = request.get_json()
-        print(lattice_json)
+        print(lattice_json) #para controle interno
         lattice_data = lattice_schema.load(request.get_json())
 
         lattice_data.save_to_db()

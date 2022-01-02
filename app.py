@@ -1,13 +1,11 @@
 from flask import Flask, Blueprint, jsonify
 from flask_restplus import Api
-
 from ma import ma
 from db import db
-from controllers.lattice import Lattice, LatticeList
-
 from marshmallow import ValidationError
-
 from server.instance import server
+
+from controllers.lattice import Lattice, LatticeList
 
 api = server.api
 app = server.app

@@ -14,7 +14,16 @@ class LatticeModel(db.Model):
     gen_matrix = db.Column(db.String, nullable=False)
     gram_matrix = db.Column(db.String, nullable=False)
 
-    def __init__(self, name, dimension, determinant, minimal_norm, kissing_number, gen_matrix, gram_matrix):
+    def __init__(
+        self,
+        name,
+        dimension,
+        determinant,
+        minimal_norm,
+        kissing_number,
+        gen_matrix,
+        gram_matrix
+    ):
         self.name = name
         self.dimension = dimension
         self.determinant = determinant
@@ -57,7 +66,9 @@ class LatticeModel(db.Model):
     def save_to_db(self) -> None:
         db.session.add(self)
         db.session.commit()
+        return None
 
     def delete_from_db(self) -> None:
         db.session.delete(self)
         db.session.commit()
+        return None
